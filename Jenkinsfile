@@ -9,18 +9,18 @@ pipeline {
 
 
     stages {
-        stage('Build') {
+        stage('Getting things ready') {
             steps {
                 echo 'Building..'
             }
         }
-        stage('Adding email or domain') {
+        stage('Adding emails and domains') {
             steps {
                 echo 'Adding domain..'
                 echo "You are about to block ${params.DOMAIN} from ${params.ACCOUNT} "
             }
         }
-        stage('Blocking with power') {
+        stage('Blocking with power!') {
             steps {
                 echo 'Deploying....'
                 sshPublisher(publishers: [sshPublisherDesc(configName: 'mail', transfers: [sshTransfer(excludes: '', execCommand: "python /opt/iRedAPD-2.4/tools/wblist_admin.py --account ${params.ACCOUNT} --add --blacklist ${params.DOMAIN}", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
