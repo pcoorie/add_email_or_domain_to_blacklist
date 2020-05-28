@@ -1,6 +1,6 @@
 #!groovy
 
-ansiColor('xterm') {
+ansiColor('gnome-terminal') {
   echo "TERM=${env.TERM}"
   // prints out TERM=xterm
 }
